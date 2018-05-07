@@ -4,9 +4,11 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "scripts": {
-    "deploy": "yarn build && yarn copy:html && yarn copy:js",
+    "deploy": "yarn build && yarn copy:html && yarn copy:js && copy:upload",
     "copy:html": "cp index.html ../kidandcat.github.io/slides/frontend/",
     "copy:js": "cp dist/bundle.js ../kidandcat.github.io/slides/frontend/dist/",
+    "copy:upload":
+      "cd ../kidandcat.github.io && git add ./slides/frontend && git commit -m 'update slides' && git push origin master",
     "clean": "rimraf dist",
     "build":
       "cross-env NODE_ENV=production webpack --config webpack.config.production.js",
