@@ -193,6 +193,24 @@ export default class Presentation extends React.Component {
             ))}
           </div>
         </Slide>
+        <Slide>
+          <Index active={4} />
+        </Slide>
+        <Slide>
+          <p>React y similares (tipo UI library)</p>
+        </Slide>
+        <Slide>
+          <Index active={5} />
+        </Slide>
+        <Slide>
+          <p>Angular y similares (tipo full framework)</p>
+        </Slide>
+        <Slide>
+          <Index active={6} />
+        </Slide>
+        <Slide>
+          <p>Comparaciones en relación al mercado laboral</p>
+        </Slide>
       </Deck>
     );
   }

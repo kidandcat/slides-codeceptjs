@@ -4,11 +4,13 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "scripts": {
+    "deploy": "yarn build && yarn copy:html && yarn copy:js",
+    "copy:html": "cp index.html ../kidandcat.github.io/slides/frontend/",
+    "copy:js": "cp dist/bundle.js ../kidandcat.github.io/slides/frontend/dist/",
     "clean": "rimraf dist",
     "build":
       "cross-env NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js,.jsx .",
-    "deploy": "npm run clean & npm run build && surge -p .",
     "export": "spectacle-renderer --delay 3000",
     "start": "cross-env NODE_ENV=development node server.js"
   },
