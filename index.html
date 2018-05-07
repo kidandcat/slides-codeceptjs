@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
   <title>Spectacle Boilerplate</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <Style>
+    .logos:hover {
+      max-height: 300px !important;
+      transition: all .3s linear;
+    }
+
+    .logos {
+      animation-name: wave;
+    }
+
+    @keyframes wave {
+      0% {
+        z-index: 2;
+        transform: scale(1);
+        /*max-height: 100px;*/
+      }
+      50% {
+        z-index: 1;
+        transform: scale(3);
+        /*max-height: 300px;*/
+      }
+      100% {
+        z-index: 1000;
+        transform: scale(1);
+        /*max-height: 100px;*/
+      }
+    }
+  </Style>
 </head>
+
 <body>
   <div id="root"></div>
   <script src="./dist/bundle.js"></script>
 </body>
+
 </html>
