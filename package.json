@@ -4,7 +4,8 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "scripts": {
-    "deploy": "yarn build && yarn copy:html && yarn copy:js && copy:upload",
+    "deploy":
+      "yarn build && yarn copy:html && yarn copy:js && yarn copy:upload",
     "copy:html": "cp index.html ../kidandcat.github.io/slides/frontend/",
     "copy:js": "cp dist/bundle.js ../kidandcat.github.io/slides/frontend/dist/",
     "copy:upload":

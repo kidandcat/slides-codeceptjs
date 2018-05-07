@@ -211,6 +211,9 @@ export default class Presentation extends React.Component {
         <Slide>
           <p>Comparaciones en relación al mercado laboral</p>
         </Slide>
+        <Slide>
+          <p>Gracias</p>
+        </Slide>
       </Deck>
     );
   }
