@@ -84,7 +84,7 @@ export default class Presentation extends React.Component {
   render() {
     !this.reversed && this.reverse();
     return (
-      <Deck transition={["zoom"]} transitionDuration={500} theme={theme}>
+      <Deck transition={["slide"]} transitionDuration={500} theme={theme}>
         <Slide>
           <Heading size={1}>Frontend frameworks</Heading>
         </Slide>
