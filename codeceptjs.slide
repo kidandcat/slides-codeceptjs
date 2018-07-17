@@ -1,0 +1,290 @@
+CodeceptJS
+Aceptance testing
+
+Jairo Caro-Accino Viciana
+Blockchain Developer at Algorath
+
+kidandcat@gmail.com
+
+https://github.com/kidandcat
+
+@kidandcat
+
+
+
+* CodeceptJS
+
+- Crear un proyecto de CodeceptJS
+- Preparación del entorno de trabajo
+- Cómo escribir tests con Codecept
+- Crear un test para una aplicación web
+- Crear un test para una aplicación móvil
+- Otras posibilidades
+
+
+
+* Crear un proyecto de CodeceptJS 
+
+.iframe https://codecept.io/ 600 1000
+
+
+
+* Crear un proyecto de CodeceptJS
+
+  npm install -g codeceptjs
+  mkdir webtest
+  cd webtest
+  codeceptjs init
+.code questions.sh
+
+
+
+* Crear un proyecto de CodeceptJS
+
+.image init.png _ 700
+
+
+
+* Preparación del entorno de trabajo
+
+Instalación de dependencias
+
+  npm init -y
+  npm install -g webdriverio
+  npm install selenium-standalone
+  npm install npm-run-all
+  npm install sleep-ms
+
+Generamos las definiciones
+
+  codeceptjs def
+
+Y tendremos una salida como esta
+
+  TypeScript Definitions provide autocompletion in Visual Studio Code and other IDEs
+  Definitions were generated in steps.d.ts
+  Load them by adding at the top of a test file:
+
+  /// <reference path="./steps.d.ts" />
+
+
+
+* Preparación del entorno de trabajo
+
+Vamos a añadir los siguientes scripts a nuestro package.json:
+
+  "scripts": {
+      "start": "run-p sel:start start:test",
+      "start:test": "run-s sleep test",
+      "sleep": "sleepms 3000",
+      "sel:start": "selenium-standalone start > '/dev/null' 2>&1",
+      "test": "codeceptjs run",
+      "postinstall": "selenium-standalone install"
+  }
+
+
+
+* Cómo escribir tests con Codecept
+
+Generamos la plantilla de nuestro primer test
+
+  codeceptjs gt
+
+.image gt.png _ 600
+
+Nos generará un archivo con el siguiente contenido
+
+  Feature('Test uno');
+
+  Scenario('test something', (I) => {
+
+  });
+
+
+
+* Crear un test para una aplicación web
+
+Vamos a añadirle las definiciones
+
+.code defs.js
+
+Y escribimos nuestro primer test
+
+.code firsttest.js
+
+
+
+* Crear un test para una aplicación web
+
+Nuestro test no funciona! vamos a _debugear_
+
+.code debugtest.js
+
+
+
+* Crear un test para una aplicación web
+
+Arreglado! ;)
+
+.code workingtest.js
+
+Documentación de los métodos disponibles
+.link https://codecept.io/helpers/WebDriverIO
+
+Métodos potentes como
+.link https://codecept.io/helpers/WebDriverIO/#see See
+.link https://codecept.io/helpers/WebDriverIO/#attachfile AttachFile
+.link https://codecept.io/helpers/WebDriverIO/#draganddrop DragAndDrop
+.link https://codecept.io/helpers/WebDriverIO/#executescript ExecuteScript
+
+
+
+* Crear un test para una aplicación móvil
+
+Generar un proyecto con Appium
+  
+  codeceptjs init
+
+Instalar dependencias
+
+  apt install android-tools-adb android-tools-fastboot
+  
+Instalar dependencias de *desarrollo*
+
+  apt install aapt
+
+.link http://appium.io/ Appium
+
+
+
+* Configurar Appium
+
+Configuración de Appium
+
+  "Appium": {
+    "app": "com.app",
+    "platform": "Android",
+    "desiredCapabilities": {
+      "appPackage": "com.app",
+      "appActivity": "com.app.activity",
+      "deviceName": "HuaweiP20Pro",
+      "platformVersion": "8.1.0",
+      "platformName": "Android"
+    }
+  }
+
+
+* Encontrar activities en las APKs
+
+Listamos las APKs del dispositivo
+
+  adb shell pm list packages -f
+
+Nos traemos el APK
+
+  adb pull /system/app/Calculator/Calculator.apk
+
+Listamos sus propiedades
+
+  aapt dump badging Calculator.apk
+
+Y buscamos las _launchable-activities_
+
+
+
+* Appium
+
+Configurar Appium correctamente
+
+  "Appium": {
+    "app": "com.inditex.zara",
+    "platform": "Android",
+    "desiredCapabilities": {
+        "appPackage": "com.inditex.zara",
+        "appActivity": "com.inditex.zara.Splash",
+        "deviceName": "HuaweiP20Pro",
+        "platformVersion": "8.1.0",
+        "platformName": "Android"
+    }
+  }
+
+
+
+* Appium
+
+Escribimos nuestro test
+
+  Scenario("Crear usuario", I => {
+    I.tap("SIGUIENTE");
+    I.tap("PERMITIR");
+    I.tap("MI CUENTA");
+    I.tap("Crear cuenta");
+    I.wait(5);
+  });
+
+Ejecutamos
+
+  codeceptjs run
+
+
+
+* Full test
+
+OMG Google!
+
+  const user = "abcdefghijklmnopqrstuvwxyz"
+  .split("")
+  .filter(c => Math.random() >= 0.5)
+  .sort(() => Math.random() >= 0.5)
+  .join("") + "@gmail.com";
+  const pass = "C0despace";
+
+  Scenario("Crear usuario", I => {
+    I.tap("SIGUIENTE");
+    I.tap("PERMITIR");
+    I.tap("MI CUENTA");
+    I.tap("Crear cuenta");
+
+    I.tap("kidandcat@gmail.com");
+    I.pressKey(user);
+    I.fillField("Contraseña", pass);
+    I.fillField("Confirmar Contraseña", pass);
+    I.fillField("Nombre", "Codespace");
+    I.fillField("Apellidos", "Academy");
+  });
+    
+
+* Full test
+
+¡Al rescate con
+
+.link https://codecept.io/helpers/Appium/ Hacker Mind
+.link http://appium.io/ Appium UI
+
+
+  I.hideDeviceKeyboard();
+  I.tap("Usar mi ubicación");
+
+  I.swipeUp("Codespace");
+  I.fillField("Móvil", "888888888");
+  I.hideDeviceKeyboard();
+
+  I.tap(
+    "//hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.CheckBox"
+  );
+  I.tap(
+    "//hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.widget.CheckBox"
+  );
+  I.tap("Guardar");
+
+
+
+* Otras posibilidades
+
+.link https://codecept.io/bdd/ BDD
+
+Scrapping
+
+  I.amOnPage("https://www.codespaceacademy.com/es/agenda-eventos-codespace");
+  let eventos = await I.grabHTMLFrom(".informacion-evento h2");
+  console.log("Eventos:", eventos);
