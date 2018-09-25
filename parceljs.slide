@@ -16,8 +16,8 @@ https://github.com/kidandcat
 - Qué es un empaquetador
 - Por qué los necesitamos
 - Automatizadores de tareas, los antepasados
-- Webpack, el rey
-- Parcel, el hijo pródigo
+- Webpack
+- Parcel
 - Creando una aplicación React desde cero
 
 
@@ -49,3 +49,73 @@ Ejemplos:
 
 .link https://material-ui.com/demos/buttons/ Material UI
 .link https://www.react-uwp.com Fluent design 
+
+
+* Automatizadores de tareas, los antepasados
+
+Antes de los empaquetadores, cuando empezó a surgir una miríada de frameworks, librerias y herramientas para el frontend, aparecieron unas herramientas para facilitarnos nuestro flujo de despliegue.
+
+Los automatizadores de tareas
+
+.link https://gulpjs.com/ Gulp
+
+
+* Webpack
+
+Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. 
+
+.link https://webpack.js.org/ Webpack
+
+.link https://webpack.js.org/guides/typescript/ Ejemplo: usar typescript
+
+
+
+* Parcel
+
+.link https://parceljs.org/ Blazing fast, zero configuration web application bundler
+
+Ejecuta parcel index.html para iniciar un servidor de desarrollo. Importar JavaScript, CSS, imágenes y más funciona sin necesidad de configurar nada! 👌
+
+
+* Creando una aplicación React desde cero
+
+index.html
+
+    <!DOCTYPE html>
+    <body>
+        <div id="root"></div>
+        <script src="./App.jsx"></script>
+    </body>
+    </html>
+
+App.jsx
+
+    import React from "react";
+    import ReactDOM from "react-dom";
+
+    export class App extends React.Component {
+        render(){
+            return <div>Hello world!</div>
+        }
+    }
+
+    ReactDOM.render(<App />, document.querySelector("#app"))
+
+* Añadir typescript
+
+App.jsx -> App.tsx
+
+    import * as React from "react";
+    import * as ReactDOM from "react-dom";
+
+    export class App extends React.Component {
+        render(){
+            return <div>Hello world!</div>
+        }
+    }
+
+    ReactDOM.render(<App />, document.querySelector("#app"))
+
+index.html
+
+        <script src="./App.tsx"></script>
