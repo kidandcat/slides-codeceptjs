@@ -1,0 +1,51 @@
+ParcelJS
+Empaquetadores
+
+Jairo Caro-Accino Viciana
+Blockchain Developer at Algorath
+
+jairocaro@msn.com
+
+https://github.com/kidandcat
+
+@kidandcat
+
+
+* ParcelJS
+
+- Qué es un empaquetador
+- Por qué los necesitamos
+- Automatizadores de tareas, los antepasados
+- Webpack, el rey
+- Parcel, el hijo pródigo
+- Creando una aplicación React desde cero
+
+
+* Qué es un empaquetador
+
+El empaquetador es una herramienta que se va a encargar de:
+
+- Aplicar transformaciones (ES6, sass, coffeescript, typescript, etc)
+
+- Compilar el código javascript y ponerlo en un solo fichero (incluidas todas las dependencias)
+
+- Minificar todo nuestro CSS y ponerlo en un solo fichero
+
+
+* Por qué los necesitamos
+
+Hoy en día cuando creamos una aplicación de frontend, o incluso una simple página web, queremos usar un montón de dependencias (código de otras personas) que nos facilitan enormemente el trabajo que tenemos que realizar.
+
+Ejemplos:
+
+- Frameworks (React, Angular, Vue, etc)
+
+- Preprocesadores (SASS, LESS, etc)
+
+- Transformadores (Babel, Typescript, etc)
+
+- Componentes (Material-ui, Fluent design)
+
+
+.link https://material-ui.com/demos/buttons/ Material UI
+.link https://www.react-uwp.com Fluent design 
